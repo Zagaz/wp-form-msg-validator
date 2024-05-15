@@ -22,7 +22,7 @@ new Custom_Contact_Form();
 
 class Custom_Contact_Form
 {
-     
+
      public function __construct()
      {
           add_action('init', array($this, 'add_shortcode'));
@@ -30,7 +30,6 @@ class Custom_Contact_Form
           add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
           add_shortcode('custom_contact_form', array($this, 'display_form'));
           add_action('init', array($this, 'process_form'));
-
      }
 
      public function add_shortcode()
@@ -51,7 +50,6 @@ class Custom_Contact_Form
           require(FMV_PLUGIN_DIR . 'templates/form.php');
 
           return ob_get_clean();
-      
      }
      public function process_form()
      {
@@ -66,20 +64,21 @@ class Custom_Contact_Form
           }
 
 
-          if($_SERVER['REQUEST_METHOD'] == 'POST'  ){
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-               $is_name = $_POST['name'] ? $_POST['name'] : false;
-               $is_email = $_POST['email'] ? $_POST['email'] : false;
-               $is_telephone = $_POST['telephone'] ? $_POST['telephone'] : false;
+               $_SESSION['name'] = $_POST['name'] ? $_POST['name'] : false;
+               $_SESSION['email'] = $_POST['email'] ? $_POST['email'] : false;
+               $_SESSION['telephone'] = $_POST['telephone'] ? $_POST['telephone'] : false;
 
                $redirect_url = 'http://localhost:8888/sample-page';
+
+     
                wp_redirect($redirect_url);
                exit;
           }
-    
      }
 
-     
+
 
 
 

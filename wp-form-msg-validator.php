@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 /*
 Plugin Name: Form Message Validator
 Description: A custom contact form plugin for WordPress.
