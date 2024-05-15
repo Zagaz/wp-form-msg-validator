@@ -70,12 +70,12 @@ class Custom_Contact_Form
                $_SESSION['email'] = $_POST['email'] ? $_POST['email'] : false;
                $_SESSION['telephone'] = $_POST['telephone'] ? $_POST['telephone'] : false;
 
-               $redirect_url = 'http://localhost:8888/sample-page';
-
-     
+               $redirect_url = 'http://localhost:8888/contact-confirmation';
                wp_redirect($redirect_url);
                exit;
           }
+
+
      }
 
 

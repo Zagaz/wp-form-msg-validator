@@ -3,24 +3,8 @@
 if (!defined('ABSPATH')) {
      exit;
 }
-// redirect the the http://localhost:8888/contact-confirmation
 
-$redirect_url = 'http://localhost:8888/contact-confirmation';
 
-if ($_SESSION['name'] && $_SESSION['email'] && $_SESSION['telephone']) {
-    echo 'Thank you for your message. We will contact you soon.';
-
-    echo '<br>';
-     echo $_SESSION['name'];
-     echo '<br>';
-     echo $_SESSION['email'];
-     echo '<br>';
-     echo $_SESSION['telephone'];
-     echo '<br>';
-     echo '<a href="' . $redirect_url . '">Back</a>';
-
-     session_destroy();
-}
 
 
 ?>
