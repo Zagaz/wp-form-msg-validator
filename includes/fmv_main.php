@@ -25,32 +25,41 @@ class Custom_Contact_Form
 
      public function __construct()
      {
-          add_action('init', array($this, 'add_shortcode'));
+          add_action('init', array($this, 'add_shortcodes'));
           add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
           add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-          add_shortcode('custom_contact_form', array($this, 'display_form'));
           add_action('init', array($this, 'process_form'));
      }
 
-     public function add_shortcode()
+     public function add_shortcodes()
      {
           add_shortcode('custom_contact_form', array($this, 'display_form'));
+          add_shortcode('custom_contact_confirmation', array($this, 'display_confirmation'));
      }
+
      public function enqueue_styles()
      {
           wp_enqueue_style('fmv-css', FMV_CSS . 'style.css');
      }
+
      public function enqueue_scripts()
      {
           wp_enqueue_script('fmv-js', FMV_JS . 'main.js', array('jquery'), null, true);
      }
+
      public function display_form()
      {
           ob_start();
           require(FMV_PLUGIN_DIR . 'templates/form.php');
-
           return ob_get_clean();
      }
+     public function display_confirmation()
+     {
+          ob_start();
+          require(FMV_PLUGIN_DIR . 'templates/result.php');
+          return ob_get_clean();
+     }
+
      public function process_form()
      {
           if (isset($_POST['name'])) {
@@ -70,20 +79,12 @@ class Custom_Contact_Form
                $_SESSION['email'] = $_POST['email'] ? $_POST['email'] : false;
                $_SESSION['telephone'] = $_POST['telephone'] ? $_POST['telephone'] : false;
 
-               $redirect_url = 'http://localhost:8888/contact-confirmation';
+               // $redirect_url = 'http://localhost:8888/sample-page';
+               $redirect_url = site_url('/contact-confirmation');
                wp_redirect($redirect_url);
                exit;
           }
-
-
      }
-
-
-
-
-
-
-
 
      public function save_data($data)
      {
